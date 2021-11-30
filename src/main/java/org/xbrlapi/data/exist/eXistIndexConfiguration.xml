@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<index 
+  xmlns="http://exist-db.org/collection-config/1.0"
+  xmlns:xbrlapi="http://xbrlapi.org/" 
+  xmlns:link="http://www.xbrl.org/2003/linkbase" 
+  xmlns:xbrli="http://www.xbrl.org/2003/instance" 
+  xmlns:label="http://xbrl.org/2008/label"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <fulltext default="none" attributes="no"/>
+
+  <lucene>
+    <analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/>
+    <analyzer id="ws" class="org.apache.lucene.analysis.WhitespaceAnalyzer"/>
+    <text qname="link:label"/>
+    <text qname="label:label"/>
+    <text qname="@name"/>
+  </lucene>
+
+  <!--  ID attributes in all their uses... -->
+  <create qname="@id" type="xs:string" />
+
+  <!-- XLink attribute indexes -->
+  <create qname="@xlink:label" type="xs:string" />
+  <create qname="@xlink:type" type="xs:string" />
+  <create qname="@xlink:from" type="xs:string" />
+  <create qname="@xlink:to" type="xs:string" />
+  <create qname="@xlink:arcrole" type="xs:string" />
+  <create qname="@xlink:role" type="xs:string" />
+  
+  <!-- XBRLAPI metadata indexes -->
+  <create path="/xbrlapi:fragment/@uri" type="xs:string" />
+  <create path="/xbrlapi:fragment/@index" type="xs:string" />
+  <create path="/xbrlapi:fragment/@parentIndex" type="xs:string" />
+  <create path="/xbrlapi:fragment/@type" type="xs:string" />
+  
+  <!--  XLink Locator metadata -->
+  <create path="/xbrlapi:fragment/@absoluteHref" type="xs:string" />
+  <create path="/xbrlapi:fragment/@targetDocumentURI" type="xs:string" />
+  <create path="/xbrlapi:fragment/@targetPointerValue" type="xs:string" />
+  <create path="/xbrlapi:fragment/xbrlapi:xptr/@value" type="xs:string" />
+
+  <!-- XML Schema -->
+  <create path="/xsd:element/@name" type="xs:string" />
+
+  <!-- Persisted relationships -->
+  <create path="/xbrlapi:fragment/@arcIndex" type="xs:string" />
+  <create path="/xbrlapi:fragment/@arcURI" type="xs:string" />
+  <create path="/xbrlapi:fragment/@arcName" type="xs:string" />
+  <create path="/xbrlapi:fragment/@arcNamespace" type="xs:string" />
+  <create path="/xbrlapi:fragment/@arcOrder" type="xs:string" />
+  <create path="/xbrlapi:fragment/@arcPriority" type="xs:string" />
+  <create path="/xbrlapi:fragment/@arcUse" type="xs:string" />
+  <create path="/xbrlapi:fragment/@arcRole" type="xs:string" />
+  <create path="/xbrlapi:fragment/@sourceIndex" type="xs:string" />
+  <create path="/xbrlapi:fragment/@sourceURI" type="xs:string" />
+  <create path="/xbrlapi:fragment/@sourceType" type="xs:string" />
+  <create path="/xbrlapi:fragment/@sourceName" type="xs:string" />
+  <create path="/xbrlapi:fragment/@sourceNamespace" type="xs:string" />
+  <create path="/xbrlapi:fragment/@sourceLanguage" type="xs:string" />
+  <create path="/xbrlapi:fragment/@sourceRole" type="xs:string" />
+  <create path="/xbrlapi:fragment/@targetIndex" type="xs:string" />
+  <create path="/xbrlapi:fragment/@targetURI" type="xs:string" />
+  <create path="/xbrlapi:fragment/@targetType" type="xs:string" />
+  <create path="/xbrlapi:fragment/@targetName" type="xs:string" />
+  <create path="/xbrlapi:fragment/@targetNamespace" type="xs:string" />
+  <create path="/xbrlapi:fragment/@targetLanguage" type="xs:string" />
+  <create path="/xbrlapi:fragment/@targetRole" type="xs:string" />
+  <create path="/xbrlapi:fragment/@linkIndex" type="xs:string" />
+  <create path="/xbrlapi:fragment/@linkName" type="xs:string" />
+  <create path="/xbrlapi:fragment/@linkNamespace" type="xs:string" />
+  <create path="/xbrlapi:fragment/@linkRole" type="xs:string" />
+
+  <!-- Stub resources -->
+  <create path="/xbrlapi:fragment/@resourceURI" type="xs:string" />
+
+</index>

@@ -1,0 +1,82 @@
+package org.xbrlapi.aspects;
+
+import org.apache.log4j.Logger;
+import org.xbrlapi.Context;
+import org.xbrlapi.Fact;
+import org.xbrlapi.Item;
+import org.xbrlapi.Segment;
+import org.xbrlapi.utilities.XBRLException;
+
+/**
+ * <h2>Segment aspect details</h2>
+ * 
+ * <p>
+ * Scenario aspects capture information in the context segment.
+ * </p>
+ * 
+ * @author Geoff Shuetrim (geoff@galexy.net)
+ */
+public class SegmentAspect extends AspectImpl implements Aspect {
+    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6762933296532647581L;
+
+    private static final Logger logger = Logger.getLogger(SegmentAspect.class);
+
+    /**
+     * The URI uniquely identifying this concept aspect.
+     */
+    public static String ID = "http://xbrlapi.org/aspect/segment/1.0";
+    
+    /**
+     * @see Aspect#getId()
+     */
+    public String getId() {
+        return ID;
+    }
+    
+    /**
+     * @param domain The domain for this aspect.
+     * @throws XBRLException
+     */
+    public SegmentAspect(Domain domain) throws XBRLException {
+        super(domain);
+    }
+    
+    /**
+     * @see Aspect#getValue(Fact)
+     */
+    public SegmentAspectValue getValue(Fact fact) throws XBRLException {
+        if (fact.isTuple()) return getMissingValue();
+        if (fact.isNil()) return getMissingValue();
+        return getValue(((Item) fact).getContext());
+    }
+
+    /**
+     * @see Aspect#getValue(Context)
+     */
+    public SegmentAspectValue getValue(Context context) throws XBRLException {
+        return getValue(context.getEntity().getSegment());
+    }       
+    
+    /**
+     * @param segment The context segment
+     * @return the saspect value.
+     * @throws XBRLException
+     */
+    public SegmentAspectValue getValue(Segment segment) throws XBRLException {
+        if (segment == null) return getMissingValue();
+        return new SegmentAspectValue(segment);
+    }        
+
+    /**
+     * @see Aspect#getMissingValue()
+     */
+    public SegmentAspectValue getMissingValue() {
+        return new SegmentAspectValue();
+    }
+
+
+}
